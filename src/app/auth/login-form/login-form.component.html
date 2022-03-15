@@ -11,7 +11,7 @@
       <h4>Username</h4>
       <mat-form-field appearance="fill">
         <mat-label>Enter your nickname</mat-label>
-        <input [(ngModel)]="logNickname"
+        <input [(ngModel)]="user.name"
                maxlength="15"
                #loginNickname="ngModel"
                matInput placeholder="sveklo" required
@@ -20,7 +20,7 @@
                >
       </mat-form-field>
 
-      <div class="alert danger-alert" *ngIf="loginNickname.dirty && loginNickname.invalid" class="alert">
+      <div class="alert danger-alert" *ngIf="loginNickname.dirty && loginNickname.invalid">
         Use only letters and numbers
       </div>
     </div>
@@ -29,7 +29,7 @@
       <h4>Password</h4>
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
-        <input [(ngModel)]="logPassword"
+        <input [(ngModel)]="user.password"
                maxlength="15" #loginPassword="ngModel"
                required name="login-password"
                matInput [type]="hide ? 'password' : 'text'">
@@ -39,7 +39,7 @@
         </button>
       </mat-form-field>
 
-      <div class="alert danger-alert" *ngIf="loginPassword.dirty && loginPassword.value.length < 4" class="alert">
+      <div class="alert danger-alert" *ngIf="loginPassword.dirty && loginPassword.value.length < 4">
         The minimum password length is 4
       </div>
     </div>

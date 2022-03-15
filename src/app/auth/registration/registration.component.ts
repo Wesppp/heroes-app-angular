@@ -10,9 +10,8 @@ import {Router} from "@angular/router";
 })
 export class RegistrationComponent implements OnInit {
   hide: boolean = true
-  registerNickname: string = ''
-  registrationPassword1: string = ''
-  registrationPassword2: string = ''
+  user: User = {id: 0, name: '', password: ''}
+  repeatPassword: string = ''
   isRepeatUser: boolean = false
   users: User[] = [];
 
@@ -30,12 +29,11 @@ export class RegistrationComponent implements OnInit {
 
     if (this.userService.isRepeat(this.users, name)) {
       this.isRepeatUser = false
-      this.userService.register({ name, password } as User)
+      this.userService.register({name, password} as User)
         .subscribe(user => {
-          if (user) {
+          console.log(user)
             this.users.push(user)
             this.router.navigate(['/login-form'])
-          }
         })
     } else {
       this.isRepeatUser = true

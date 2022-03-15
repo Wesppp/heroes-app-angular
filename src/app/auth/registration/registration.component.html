@@ -11,7 +11,7 @@
       <h4>Username</h4>
       <mat-form-field appearance="fill">
         <mat-label>Enter your nickname</mat-label>
-        <input [(ngModel)]="registerNickname"
+        <input [(ngModel)]="user.name"
                maxlength="15"
                #regNickname="ngModel"
                matInput placeholder="sveklo" required
@@ -19,7 +19,7 @@
                pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}"
                >
       </mat-form-field>
-      <div class="alert danger-alert" *ngIf="regNickname.dirty && regNickname.invalid" class="alert">
+      <div class="alert danger-alert" *ngIf="regNickname.dirty && regNickname.invalid">
         Use only letters and numbers
       </div>
     </div>
@@ -28,7 +28,7 @@
       <h4>Password</h4>
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
-        <input [(ngModel)]="registrationPassword1"
+        <input [(ngModel)]="user.password"
                maxlength="15" #regPassword1="ngModel"
                required name="reg-password1"
                matInput [type]="hide ? 'password' : 'text'">
@@ -37,7 +37,7 @@
         </button>
       </mat-form-field>
 
-      <div class="alert danger-alert" *ngIf="regPassword1.dirty && regPassword1.value.length < 4" class="alert">
+      <div class="alert danger-alert" *ngIf="regPassword1.dirty && regPassword1.value.length < 4">
         The minimum password length is 4
       </div>
     </div>
@@ -46,7 +46,7 @@
       <h4>Repeat the password</h4>
       <mat-form-field appearance="fill">
         <mat-label>Enter your password one more time</mat-label>
-        <input [(ngModel)]="registrationPassword2"
+        <input [(ngModel)]="repeatPassword"
                maxlength="15" #regPassword2="ngModel"
                required name="reg-password2"
                matInput [type]="hide ? 'password' : 'text'">
@@ -55,7 +55,7 @@
         </button>
       </mat-form-field>
 
-      <div class="alert danger-alert" *ngIf="regPassword2.dirty && regPassword2.value.length < 4" class="alert">
+      <div class="alert danger-alert" *ngIf="regPassword2.dirty && regPassword2.value.length < 4">
         The minimum password length is 4
       </div>
     </div>
