@@ -1,0 +1,21 @@
+<div class="nav">
+  <div class="logo">
+    <a routerLink="/dashboard">Heroes</a>
+  </div>
+
+  <ul class="nav-menu">
+    <li>
+      <a routerLinkActive="active" routerLink="/users-crud">Пользователи</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="/login-form">Выход</a>
+    </li>
+  </ul>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<app-messages></app-messages>
+

@@ -1,0 +1,13 @@
+h1 {
+  margin-bottom: 0;
+}
+nav a {
+  padding: 0.3rem 1rem;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+
+  &:nth-child(1) {
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,69 @@
+<div *ngIf="isRepeatUser" class="userRepeat-error">
+  user with this name exists!
+</div>
+
+<div class="container">
+  <p>fill in the registration fields</p>
+  <h2>Registration</h2>
+
+  <form (ngSubmit)="register(regNickname.value, regPassword1.value); userForm.reset()" #userForm="ngForm">
+    <div class="name">
+      <h4>Username</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your nickname</mat-label>
+        <input [(ngModel)]="registerNickname"
+               maxlength="15"
+               #regNickname="ngModel"
+               matInput placeholder="sveklo" required
+               name="reg-nickname"
+               pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}"
+               >
+      </mat-form-field>
+      <div class="alert danger-alert" *ngIf="regNickname.dirty && regNickname.invalid" class="alert">
+        Use only letters and numbers
+      </div>
+    </div>
+
+    <div class="password">
+      <h4>Password</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input [(ngModel)]="registrationPassword1"
+               maxlength="15" #regPassword1="ngModel"
+               required name="reg-password1"
+               matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="alert danger-alert" *ngIf="regPassword1.dirty && regPassword1.value.length < 4" class="alert">
+        The minimum password length is 4
+      </div>
+    </div>
+
+    <div class="password">
+      <h4>Repeat the password</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password one more time</mat-label>
+        <input [(ngModel)]="registrationPassword2"
+               maxlength="15" #regPassword2="ngModel"
+               required name="reg-password2"
+               matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="alert danger-alert" *ngIf="regPassword2.dirty && regPassword2.value.length < 4" class="alert">
+        The minimum password length is 4
+      </div>
+    </div>
+
+    <div class="btns">
+      <button type="submit" [disabled]="!userForm.form.valid || regPassword1.value.length < 4
+              || regPassword1.value !== regPassword2.value"
+              mat-raised-button color="primary">Registration</button>
+    </div>
+  </form>
+</div>

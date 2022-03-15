@@ -1,0 +1,57 @@
+<div *ngIf="isExistUser" class="userRepeat-error">
+  username or password is incorrect!
+</div>
+
+<div class="container">
+  <p>log in if you are registered</p>
+  <h2>Login</h2>
+
+  <form (ngSubmit)="login(loginNickname.value, loginPassword.value)" #userForm="ngForm">
+    <div class="name">
+      <h4>Username</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your nickname</mat-label>
+        <input [(ngModel)]="logNickname"
+               maxlength="15"
+               #loginNickname="ngModel"
+               matInput placeholder="sveklo" required
+               name="login-nickname"
+               pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}"
+               >
+      </mat-form-field>
+
+      <div class="alert danger-alert" *ngIf="loginNickname.dirty && loginNickname.invalid" class="alert">
+        Use only letters and numbers
+      </div>
+    </div>
+
+    <div class="password">
+      <h4>Password</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input [(ngModel)]="logPassword"
+               maxlength="15" #loginPassword="ngModel"
+               required name="login-password"
+               matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="alert danger-alert" *ngIf="loginPassword.dirty && loginPassword.value.length < 4" class="alert">
+        The minimum password length is 4
+      </div>
+    </div>
+
+    <div class="btns">
+      <button type="submit" [disabled]="!userForm.form.valid || loginPassword.value.length < 4" mat-raised-button
+              color="primary">Login
+      </button>
+      <a routerLink="/restore-password">Forgot password?</a>
+    </div>
+  </form>
+
+</div>
+
+
