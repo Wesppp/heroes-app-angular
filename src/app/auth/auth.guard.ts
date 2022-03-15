@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot, Router} from "@angular/router";
 import {Observable, of} from "rxjs";
 import { AuthService } from "./auth.service";
 
@@ -26,6 +26,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.canActivate(next, state)
+    let myRole = this.auth.role
+    let roles = next.data['roles'] as Array<string>
+    if (!roles || roles.indexOf(myRole) !== -1) return of(true)
+    else {
+      this.router.navigate(['/dashboard'])
+      return of(false)
+    }
   }
 }

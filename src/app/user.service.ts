@@ -33,7 +33,7 @@ export class UserService {
   }
 
   restore(name: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.usersUrl}/?name=${name}`).pipe(
+    return this.http.get<User[]>(`${this.usersUrl}?name=${name}`).pipe(
       catchError(this.handleError<User[]>(`restore password`))
     )
   }

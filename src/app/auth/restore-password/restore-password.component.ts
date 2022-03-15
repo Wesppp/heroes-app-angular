@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../user.service";
+import {UserService} from "../../user.service";
 
 @Component({
   selector: 'app-restore-password',
@@ -23,9 +23,12 @@ export class RestorePasswordComponent implements OnInit {
         this.restoredPassword = ''
         this.userNotExist = true
         if (user.length) {
-          console.log(user)
-          this.userNotExist = false
-          this.restoredPassword = user[0].password
+          user.forEach(user => {
+            if (user.name === name) {
+              this.restoredPassword = user.password
+              this.userNotExist = false
+            }
+          })
         }
       })
   }

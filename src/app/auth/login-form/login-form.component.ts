@@ -31,10 +31,15 @@ export class LoginFormComponent implements OnInit {
       this.userService.login({ name, password } as User)
         .subscribe(user => {
           this.isExistUser = true
-          if (user.length && user[0].password === password) {
-            this.isExistUser = false
-            this.authService.isLoggedIn = true
-            this.router.navigate(['/dashboard'])
+          if (user.length) {
+            user.forEach(user => {
+              if (user.name === name && user.password === password) {
+                this.isExistUser = false
+                this.authService.isLoggedIn = true
+                this.authService.role = user.role!
+                this.router.navigate(['/dashboard'])
+              }
+            })
           }
         })
   }
