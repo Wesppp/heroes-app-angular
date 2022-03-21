@@ -34,9 +34,8 @@ export class LoginFormComponent implements OnInit {
             user.forEach(user => {
               if (user.name === name && user.password === password) {
                 this.isExistUser = false
-                this.authService.isLoggedIn = true
                 this.authService.role = user.role!
-                this.router.navigate(['/dashboard'])
+                this.router.navigate(['/captcha'])
               }
             })
           }

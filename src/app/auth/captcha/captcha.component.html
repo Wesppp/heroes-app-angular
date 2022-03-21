@@ -1,0 +1,38 @@
+<div *ngIf="!isCorrect" class="userRepeat-error">
+  captcha entered incorrectly!
+</div>
+
+<div class="container">
+  <p>fill in the field to continue</p>
+  <h2>Captcha</h2>
+
+  <form (ngSubmit)="submit(Captcha.value)" #captchaForm="ngForm">
+    <div class="captcha">
+
+      <div class="random-symbols">
+        {{ randomSymbols }}
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter captcha</mat-label>
+        <input [(ngModel)]="captcha"
+               maxlength="5"
+               #Captcha="ngModel"
+               matInput placeholder="5h3f5" required
+               name="captcha"
+               pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}"
+        >
+      </mat-form-field>
+
+      <div class="alert danger-alert" *ngIf="Captcha.dirty && Captcha.invalid">
+        use only letters and numbers
+      </div>
+    </div>
+
+    <div class="btns">
+      <button type="submit" [disabled]="!captchaForm.form.valid" mat-raised-button
+              color="primary">Submit
+      </button>
+    </div>
+  </form>
+</div>

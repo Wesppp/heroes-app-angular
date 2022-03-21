@@ -33,6 +33,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {UserCardComponent} from "./main-app/users-crud/user-card/user-card.component";
 import { FilterPipe } from './pipes/filter.pipe';
+import { CaptchaComponent } from './auth/captcha/captcha.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { FilterPipe } from './pipes/filter.pipe';
         RestorePasswordComponent,
         UsersCRUDComponent,
         UserCardComponent,
-        FilterPipe
+        FilterPipe,
+        CaptchaComponent
     ],
   imports: [
     BrowserModule,

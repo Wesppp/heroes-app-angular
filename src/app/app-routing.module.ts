@@ -10,6 +10,7 @@ import {AppLayoutComponent} from "./shared/layouts/app-layout/app-layout.compone
 import {RestorePasswordComponent} from "./auth/restore-password/restore-password.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {UsersCRUDComponent} from "./main-app/users-crud/users-crud.component";
+import {CaptchaComponent} from "./auth/captcha/captcha.component";
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
       {path: '', redirectTo: '/login-form', pathMatch: 'full'},
       {path: 'login-form', component: LoginFormComponent},
       {path: 'registration', component: RegistrationComponent},
-      {path: 'restore-password', component: RestorePasswordComponent}
+      {path: 'restore-password', component: RestorePasswordComponent},
+      {path: 'captcha', component: CaptchaComponent}
     ]
   },
   {
