@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HeroesComponent } from './main-app/heroes/heroes.component';
-import { DashboardComponent } from "./main-app/dashboard/dashboard.component";
-import { HeroDetailComponent } from './main-app/hero-detail/hero-detail.component';
-import { LoginFormComponent } from "./auth/login-form/login-form.component";
-import { RegistrationComponent } from "./auth/registration/registration.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HeroesComponent} from './main-app/heroes/heroes.component';
+import {DashboardComponent} from "./main-app/dashboard/dashboard.component";
+import {HeroDetailComponent} from './main-app/hero-detail/hero-detail.component';
+import {LoginFormComponent} from "./auth/login-form/login-form.component";
+import {RegistrationComponent} from "./auth/registration/registration.component";
 import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component";
 import {AppLayoutComponent} from "./shared/layouts/app-layout/app-layout.component";
 import {RestorePasswordComponent} from "./auth/restore-password/restore-password.component";
@@ -23,10 +23,10 @@ const routes: Routes = [
   {
     path: '', component: AppLayoutComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
       {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-      { path: 'heroes', component: HeroesComponent },
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'detail/:id', component: HeroDetailComponent },
-      { path: 'users-crud', component: UsersCRUDComponent, data: {roles: ['admin']} }
+      {path: 'heroes', component: HeroesComponent},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'detail/:id', component: HeroDetailComponent},
+      {path: 'users-crud', component: UsersCRUDComponent, data: {roles: ['admin']}}
     ]
   }
 ]
@@ -35,4 +35,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

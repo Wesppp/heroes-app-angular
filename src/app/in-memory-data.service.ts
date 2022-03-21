@@ -22,7 +22,9 @@ export class InMemoryDataService implements InMemoryDbService{
     ]
 
     const users = [
-      {id: 11, name:'admin', password: 'admin', role: 'admin'}
+      {name:'admin', password: 'admin', role: 'admin', id: 11},
+      {name: 'user1', password: '1234', id: 12},
+      {name: 'user2', password: '4321', id: 13}
     ]
     return {heroes, users}
   }

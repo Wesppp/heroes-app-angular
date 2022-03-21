@@ -42,6 +42,19 @@ export class UserService {
     return !users.find(user => user.name === name)
   }
 
+  deleteUser(id: number): Observable<User> {
+    const url = `${this.usersUrl}/${id}`;
+    return this.http.delete<User>(url, this.httpOptions).pipe(
+      catchError(this.handleError<User>('deleteUser'))
+    );
+  }
+
+  editUser(user: User): Observable<any> {
+    return  this.http.put(this.usersUrl, user, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateUser'))
+    )
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error)

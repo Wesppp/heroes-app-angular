@@ -17,7 +17,7 @@
                matInput placeholder="sveklo" required
                name="reg-nickname"
                pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}"
-               >
+        >
       </mat-form-field>
       <div class="alert danger-alert" *ngIf="regNickname.dirty && regNickname.invalid">
         Use only letters and numbers
@@ -32,7 +32,8 @@
                maxlength="15" #regPassword1="ngModel"
                required name="reg-password1"
                matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
@@ -50,7 +51,8 @@
                maxlength="15" #regPassword2="ngModel"
                required name="reg-password2"
                matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
@@ -63,7 +65,8 @@
     <div class="btns">
       <button type="submit" [disabled]="!userForm.form.valid || regPassword1.value.length < 4
               || regPassword1.value !== regPassword2.value"
-              mat-raised-button color="primary">Registration</button>
+              mat-raised-button color="primary">Registration
+      </button>
     </div>
   </form>
 </div>

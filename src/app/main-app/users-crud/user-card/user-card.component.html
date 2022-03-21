@@ -1,0 +1,31 @@
+<li>
+  <form #editUserForm="ngForm">
+    <mat-card class="mat-card">
+      <div class="mat-card-info">
+        <span id="user-id">id:{{ user.id }}   </span>
+        <span class="user-info" *ngIf="!isEdit">
+      Name: {{ user.name }}, Password: {{ user.password }}
+    </span>
+        <span *ngIf="isEdit">
+          <span>Nickname:</span> <input maxlength="15"
+                                        type="text" name="nickname"
+                                        [(ngModel)]="user.name"
+                                        required #editName="ngModel" pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}">,
+          <span>Password:</span> <input [(ngModel)]="user.password" type="text"
+                                        required #editPassword="ngModel"
+                                        name="password" maxlength="15" minlength="4">
+        </span>
+      </div>
+
+      <div class="mat-card-btns">
+        <button [disabled]="editUserForm.invalid" *ngIf="isEdit"
+                (click)="save(user)" mat-raised-button color="primary">Save
+        </button>
+        <button *ngIf="!isEdit" (click)="edit()" mat-raised-button color="primary">Edit</button>
+        <button (click)="delete(user)" mat-raised-button color="warn">Delete</button>
+      </div>
+    </mat-card>
+  </form>
+</li>
+
+

@@ -4,11 +4,11 @@
   </div>
 
   <ul class="nav-menu">
-    <li>
-      <a routerLinkActive="active" routerLink="/users-crud">Пользователи</a>
+    <li *ngIf="auth.role === 'admin'">
+      <a routerLink="/users-crud">Пользователи</a>
     </li>
     <li>
-      <a routerLinkActive="active" routerLink="/login-form">Выход</a>
+      <a routerLink="/login-form">Выход</a>
     </li>
   </ul>
 </div>

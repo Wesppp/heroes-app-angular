@@ -6,6 +6,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CommonModule } from '@angular/common';
 
+import { MatTableModule } from "@angular/material/table";
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './main-app/heroes/heroes.component';
 import { HeroDetailComponent } from './main-app/hero-detail/hero-detail.component';
@@ -28,23 +29,29 @@ import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.co
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import {AuthGuard} from "./auth/auth.guard";
 import { UsersCRUDComponent } from './main-app/users-crud/users-crud.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
+import {UserCardComponent} from "./main-app/users-crud/user-card/user-card.component";
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    MessagesComponent,
-    DashboardComponent,
-    HeroSearchComponent,
-    LoginFormComponent,
-    NavComponent,
-    RegistrationComponent,
-    AppLayoutComponent,
-    AuthLayoutComponent,
-    RestorePasswordComponent,
-    UsersCRUDComponent
-  ],
+    declarations: [
+        AppComponent,
+        HeroesComponent,
+        HeroDetailComponent,
+        MessagesComponent,
+        DashboardComponent,
+        HeroSearchComponent,
+        LoginFormComponent,
+        NavComponent,
+        RegistrationComponent,
+        AppLayoutComponent,
+        AuthLayoutComponent,
+        RestorePasswordComponent,
+        UsersCRUDComponent,
+        UserCardComponent,
+        FilterPipe
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -59,7 +66,10 @@ import { UsersCRUDComponent } from './main-app/users-crud/users-crud.component';
     MatSnackBarModule,
     MatIconModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [HeroService, AuthGuard],
   bootstrap: [AppComponent]

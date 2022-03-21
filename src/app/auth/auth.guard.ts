@@ -10,10 +10,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private auth: AuthService,
               private router: Router) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     if (this.auth.isLoggedIn) {
       return of(true)
     } else {
@@ -22,15 +19,13 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     }
   }
 
-  canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
+  canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     let myRole = this.auth.role
     let roles = next.data['roles'] as Array<string>
     if (!roles || roles.indexOf(myRole) !== -1) return of(true)
     else {
       this.router.navigate(['/dashboard'])
+      alert('Only admin can use this section')
       return of(false)
     }
   }
