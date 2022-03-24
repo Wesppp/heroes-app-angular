@@ -13,6 +13,8 @@ export class UsersCRUDComponent implements OnInit {
   user: User = {id: 0, name: '', password: ''}
   users: User[] = []
   isAdd: boolean = false;
+  isProgessBarVisible: boolean = true;
+  value: number = 50;
 
   constructor(private userService: UserService,
               private messageService: MessageService) { }
@@ -22,6 +24,7 @@ export class UsersCRUDComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => {
         this.users = users.slice(1)
+        this.isProgessBarVisible = false
       })
   }
 

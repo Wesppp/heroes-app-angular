@@ -6,7 +6,7 @@
   <p>fill in the registration fields</p>
   <h2>Registration</h2>
 
-  <form (ngSubmit)="register(regNickname.value, regPassword1.value); userForm.reset()" #userForm="ngForm">
+  <form #userForm="ngForm">
     <div class="name">
       <h4>Username</h4>
       <mat-form-field appearance="fill">
@@ -63,7 +63,7 @@
     </div>
 
     <div class="btns">
-      <button type="submit" [disabled]="!userForm.form.valid || regPassword1.value.length < 4
+      <button type="submit" (click)="register(regNickname.value, regPassword1.value); userForm.reset()" [disabled]="!userForm.form.valid || regPassword1.value.length < 4
               || regPassword1.value !== regPassword2.value"
               mat-raised-button color="primary">Registration
       </button>

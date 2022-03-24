@@ -11,6 +11,7 @@ import {RestorePasswordComponent} from "./auth/restore-password/restore-password
 import {AuthGuard} from "./auth/auth.guard";
 import {UsersCRUDComponent} from "./main-app/users-crud/users-crud.component";
 import {CaptchaComponent} from "./auth/captcha/captcha.component";
+import {MessagesComponent} from "./main-app/messages/messages.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
       {path: 'heroes', component: HeroesComponent},
       {path: 'dashboard', component: DashboardComponent},
       {path: 'detail/:id', component: HeroDetailComponent},
+      {path: 'messages', component: MessagesComponent},
       {path: 'users-crud', component: UsersCRUDComponent, data: {roles: ['admin']}}
     ]
   }

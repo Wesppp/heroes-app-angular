@@ -1,0 +1,20 @@
+<form #addHeroForm="ngForm">
+  <h1 mat-dialog-title>Adding a new Hero</h1>
+  <div mat-dialog-content>
+
+    <input pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}"
+           [(ngModel)]="name"
+           maxlength="10"
+           type="text" placeholder="Dynamike"
+           name="name" required
+           class="add-hero-name"
+           #heroName="ngModel"/>
+
+  </div>
+  <div mat-dialog-actions>
+    <button type="submit" (click)="add(heroName.value)" [disabled]="addHeroForm.invalid"
+            mat-raised-button color="primary"
+            mat-dialog-close>Add
+    </button>
+  </div>
+</form>

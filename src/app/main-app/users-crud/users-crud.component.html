@@ -36,7 +36,17 @@
     </form>
   </div>
 
-    <ul *ngIf="!isAdd">
+
+  <div class="progress-bar-container"
+       *ngIf="isProgessBarVisible">
+    <mat-progress-spinner class="progress-bar"
+                          color="primary"
+                          mode="indeterminate"
+                          [value]="value">
+    </mat-progress-spinner>
+  </div>
+
+    <ul *ngIf="!isAdd && !isProgessBarVisible">
       <app-user-card *ngFor="let user of users | filter:search"
                      [user]="user"></app-user-card>
     </ul>

@@ -4,6 +4,15 @@
   </div>
 
   <ul class="nav-menu">
+    <li>
+      <a routerLink="/dashboard">Dashboard</a>
+    </li>
+    <li>
+      <a routerLink="/heroes">Heroes</a>
+    </li>
+    <li>
+      <a routerLink="/messages">Сообщения</a>
+    </li>
     <li *ngIf="auth.role === 'admin'">
       <a routerLink="/users-crud">Пользователи</a>
     </li>
@@ -16,6 +25,4 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
-
-<app-messages></app-messages>
 

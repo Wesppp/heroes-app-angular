@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { MessageService } from "./message.service";
 import { Hero } from './hero';
-import { catchError, map, tap } from "rxjs";
+import { catchError, tap } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +58,10 @@ export class HeroService {
       tap(_ => this.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
+  }
+
+  isRepeat(heroes: Hero[], name: string): boolean {
+    return !heroes.find(hero => hero.name === name)
   }
 
   searchHeroes(term: string): Observable<Hero[]> {

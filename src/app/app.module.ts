@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CommonModule } from '@angular/common';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { MatTableModule } from "@angular/material/table";
 import { AppComponent } from './app.component';
@@ -22,7 +23,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginFormComponent } from './auth/login-form/login-form.component';
 import {MatIconModule} from "@angular/material/icon";
-import { NavComponent } from './main-app/nav/nav.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { AppLayoutComponent } from './shared/layouts/app-layout/app-layout.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
@@ -34,6 +34,7 @@ import {MatCardModule} from '@angular/material/card';
 import {UserCardComponent} from "./main-app/users-crud/user-card/user-card.component";
 import { FilterPipe } from './pipes/filter.pipe';
 import { CaptchaComponent } from './auth/captcha/captcha.component';
+import { HerroAddDialogComponent } from './main-app/heroes/herro-add-dialog/herro-add-dialog.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,6 @@ import { CaptchaComponent } from './auth/captcha/captcha.component';
         DashboardComponent,
         HeroSearchComponent,
         LoginFormComponent,
-        NavComponent,
         RegistrationComponent,
         AppLayoutComponent,
         AuthLayoutComponent,
@@ -52,7 +52,8 @@ import { CaptchaComponent } from './auth/captcha/captcha.component';
         UsersCRUDComponent,
         UserCardComponent,
         FilterPipe,
-        CaptchaComponent
+        CaptchaComponent,
+        HerroAddDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -71,9 +72,10 @@ import { CaptchaComponent } from './auth/captcha/captcha.component';
     FormsModule,
     MatTableModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
-  providers: [HeroService, AuthGuard],
+  providers: [HeroService, AuthGuard, HeroesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import swal from 'sweetalert2';
+import {Hero} from '../../hero';
+import {HeroService} from '../../hero.service';
+import {MatDialog} from "@angular/material/dialog";
+import {HerroAddDialogComponent} from "./herro-add-dialog/herro-add-dialog.component";
 
-import { Hero } from '../../hero';
-import { HeroService } from '../../hero.service';
-import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-heroes',
@@ -11,40 +13,44 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 })
 export class HeroesComponent implements OnInit {
 
+  value: number = 50
+  isProgessBarVisible: boolean = true;
   heroes: Hero[] = [];
+  search: string = '';
 
   constructor(private heroService: HeroService,
-              private snackBar: MatSnackBar) { }
+              public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.getHeroes()
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes);
+  openDialog() {
+    this.dialog.open(HerroAddDialogComponent);
   }
 
-  add(name: string): void {
-    name = name.trim()
-    if (!name) { return }
-    this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero)
-      })
+  getHeroes(): void {
+    this.heroService.getHeroes()
+      .subscribe(heroes => {
+        this.heroes = heroes
+        this.isProgessBarVisible = false
+      });
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero.id).subscribe();
-  }
-
-  openSnackBar(name: string) {
-    name = name.trim()
-    if (!name) { return }
-
-    this.snackBar.open('A hero was added', '', {
-      duration: 2000
+    swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary hero!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.heroes = this.heroes.filter(h => h !== hero);
+        this.heroService.deleteHero(hero.id).subscribe();
+      }
     })
   }
 }
