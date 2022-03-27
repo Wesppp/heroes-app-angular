@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../user.service";
 import {User} from "../../user";
 import {MessageService} from "../../message.service";
+import {UserAddDialogComponent} from "./user-add-dialog/user-add-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {GlobalService} from "../../global.service";
 
 @Component({
   selector: 'app-users-crud',
@@ -10,37 +13,62 @@ import {MessageService} from "../../message.service";
 })
 export class UsersCRUDComponent implements OnInit {
   search: string = ''
-  user: User = {id: 0, name: '', password: ''}
+  user: User = {id: 0, name: '', password: '', role: 'user'}
   users: User[] = []
   isAdd: boolean = false;
   isProgessBarVisible: boolean = true;
   value: number = 50;
 
   constructor(private userService: UserService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              public dialog: MatDialog,
+              private globalService: GlobalService) { }
 
   ngOnInit(): void {
     this.messageService.clear()
+
+    this.getUsers()
+
+    this.globalService.updateObservable$.subscribe(res => {
+      if(res.refresh){
+        this.getUsers();
+      }
+    })
+  }
+
+  filter(role: string) {
     this.userService.getUsers()
       .subscribe(users => {
-        this.users = users.slice(1)
-        this.isProgessBarVisible = false
+        if (users.length) {
+          this.users = users.slice(1).filter( (user) => user.role === role)
+        } else {
+          this.globalService.openSnackBar('Error')
+        }
       })
   }
 
-  add() {
-    this.isAdd = true
+  showAll() {
+    this.getUsers()
   }
 
-  save(name: string, password: string) {
-    this.userService.register({name, password} as User).subscribe(
-      user => {this.users.push(user)}
-    )
-    this.isAdd = false
+  addModal() {
+    this.dialog.open(UserAddDialogComponent);
   }
 
   close() {
     this.isAdd = false
+  }
+
+  getUsers() {
+    this.userService.getUsers()
+      .subscribe(users => {
+        if (users.length) {
+          this.users = users.slice(1)
+          this.isProgessBarVisible = false
+        } else {
+          this.globalService.openSnackBar('Error')
+        }
+      })
   }
 }
 

@@ -11,11 +11,16 @@
     list-style-type: none;
   }
 
-  .add-btn {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    box-shadow: none;
-    margin-bottom: -0.5rem;
+  .btns {
+    display: flex;
+
+    button {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      box-shadow: none;
+      margin-bottom: -0.5rem;
+      margin-right: 10px;
+    }
   }
 
   .search-wrapper {
@@ -31,6 +36,5 @@
       font-family: Roboto, sans-serif;
     }
   }
-
 }
 

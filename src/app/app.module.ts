@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { MatTableModule } from "@angular/material/table";
+import {MatMenuModule} from '@angular/material/menu';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './main-app/heroes/heroes.component';
 import { HeroDetailComponent } from './main-app/hero-detail/hero-detail.component';
@@ -35,6 +36,7 @@ import {UserCardComponent} from "./main-app/users-crud/user-card/user-card.compo
 import { FilterPipe } from './pipes/filter.pipe';
 import { CaptchaComponent } from './auth/captcha/captcha.component';
 import { HerroAddDialogComponent } from './main-app/heroes/herro-add-dialog/herro-add-dialog.component';
+import { UserAddDialogComponent } from './main-app/users-crud/user-add-dialog/user-add-dialog.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +55,8 @@ import { HerroAddDialogComponent } from './main-app/heroes/herro-add-dialog/herr
         UserCardComponent,
         FilterPipe,
         CaptchaComponent,
-        HerroAddDialogComponent
+        HerroAddDialogComponent,
+        UserAddDialogComponent,
     ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { HerroAddDialogComponent } from './main-app/heroes/herro-add-dialog/herr
     MatTableModule,
     MatDialogModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule
   ],
   providers: [HeroService, AuthGuard, HeroesComponent],
   bootstrap: [AppComponent]

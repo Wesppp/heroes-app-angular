@@ -50,7 +50,7 @@ export class UserService {
   }
 
   editUser(user: User): Observable<any> {
-    return  this.http.put(this.usersUrl, user, this.httpOptions).pipe(
+    return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateUser'))
     )
   }

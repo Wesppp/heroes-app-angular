@@ -2,18 +2,15 @@
   <form #editUserForm="ngForm">
     <mat-card class="mat-card">
       <div class="mat-card-info">
-        <span id="user-id">id:{{ user.id }}   </span>
         <span class="user-info" *ngIf="!isEdit">
-      Name: {{ user.name }}, Password: {{ user.password }}
+      Name: {{ user.name }}, Role: {{ user.role }}
     </span>
         <span *ngIf="isEdit">
-          <span>Nickname:</span> <input maxlength="15"
-                                        type="text" name="nickname"
-                                        [(ngModel)]="user.name"
-                                        required #editName="ngModel" pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}">,
-          <span>Password:</span> <input [(ngModel)]="user.password" type="text"
-                                        required #editPassword="ngModel"
-                                        name="password" maxlength="15" minlength="4">
+          <span>Role:</span>
+          <select name="role" required [(ngModel)]="user.role">
+            <option value="user">user</option>
+            <option value="manager">manager</option>
+          </select>
         </span>
       </div>
 

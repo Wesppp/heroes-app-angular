@@ -4,6 +4,7 @@ import {Hero} from '../../hero';
 import {HeroService} from '../../hero.service';
 import {MatDialog} from "@angular/material/dialog";
 import {HerroAddDialogComponent} from "./herro-add-dialog/herro-add-dialog.component";
+import {GlobalService} from "../../global.service";
 
 
 @Component({
@@ -19,11 +20,19 @@ export class HeroesComponent implements OnInit {
   search: string = '';
 
   constructor(private heroService: HeroService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
     this.getHeroes()
+
+    this.globalService.updateObservable$.subscribe(res => {
+      if(res.refresh){
+        console.log("update")
+        this.getHeroes();
+      }
+    })
   }
 
   openDialog() {

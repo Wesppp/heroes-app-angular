@@ -11,7 +11,7 @@ import {AuthService} from "../auth.service";
 })
 export class LoginFormComponent implements OnInit {
   hide: boolean = true;
-  user: User = {id: 0, name: '', password: ''}
+  user: User = {id: 0, name: '', password: '', role: 'user'}
   isExistUser: boolean = false
 
   constructor(private userService: UserService,

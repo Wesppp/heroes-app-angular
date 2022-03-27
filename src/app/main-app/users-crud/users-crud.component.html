@@ -1,41 +1,22 @@
 <div class="container">
   <h1>Users-CRUD</h1>
 
-  <div>
-    <button (click)="add()" class="add-btn" mat-raised-button color="primary">Add user</button>
+  <div class="btns">
+    <div>
+      <button (click)="addModal()" mat-raised-button color="primary">Add user</button>
+    </div>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Filter</button>
+    <mat-menu #menu="matMenu">
+      <button (click)="filter('user')" mat-menu-item>user</button>
+      <button (click)="filter('manager')" mat-menu-item>manager</button>
+      <button (click)="showAll()" mat-menu-item>all</button>
+    </mat-menu>
   </div>
   <hr>
 
   <div class="search-wrapper">
     <input id="search" type="text" [(ngModel)]="search" placeholder="Search for users by name">
   </div>
-
-  <div *ngIf="isAdd" class="add-user">
-    <form #addUserForm="ngForm">
-      <h3>Create a new user:</h3>
-      <mat-card class="mat-card">
-        <div class="mat-card-info">
-          <span>
-          <span>Nickname:</span> <input maxlength="15"
-                                        type="text" name="nickname"
-                                        [(ngModel)]="user.name"
-                                        required #editName="ngModel" pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}">,
-          <span>Password:</span> <input [(ngModel)]="user.password" type="text"
-                                        required #editPassword="ngModel"
-                                        name="password" maxlength="15" minlength="4">
-        </span>
-        </div>
-
-        <div class="mat-card-btns">
-          <button [disabled]="addUserForm.invalid"
-                  (click)="save(editName.value, editPassword.value)" mat-raised-button color="primary">Save
-          </button>
-          <button (click)="close()" mat-raised-button color="warn">Close</button>
-        </div>
-      </mat-card>
-    </form>
-  </div>
-
 
   <div class="progress-bar-container"
        *ngIf="isProgessBarVisible">
@@ -48,6 +29,6 @@
 
     <ul *ngIf="!isAdd && !isProgessBarVisible">
       <app-user-card *ngFor="let user of users | filter:search"
-                     [user]="user"></app-user-card>
+                     [user]="user" [users]="users"></app-user-card>
     </ul>
 </div>

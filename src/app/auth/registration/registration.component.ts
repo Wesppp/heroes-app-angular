@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class RegistrationComponent implements OnInit {
   hide: boolean = true
-  user: User = {id: 0, name: '', password: ''}
+  user: User = {id: 0, name: '', password: '', role: 'user'}
   repeatPassword: string = ''
   isRepeatUser: boolean = false
   users: User[] = [];

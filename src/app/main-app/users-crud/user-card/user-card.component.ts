@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../../user";
 import {UserService} from "../../../user.service";
-import {UsersCRUDComponent} from "../users-crud.component";
+import {GlobalService} from "../../../global.service";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-user-card',
@@ -10,10 +11,12 @@ import {UsersCRUDComponent} from "../users-crud.component";
 })
 export class UserCardComponent implements OnInit {
   isEdit: boolean = false
-  @Input() user: User = {id: 0, name: '', password: ''}
+  @Input() user: User = {id: 0, name: '', password: '', role: 'user'}
+  @Input() users: User[] = []
 
   constructor(private userService: UserService,
-              private usersCRUDComponent: UsersCRUDComponent) { }
+              private globalService: GlobalService) {
+  }
 
   ngOnInit(): void {
   }
@@ -23,8 +26,19 @@ export class UserCardComponent implements OnInit {
   }
 
   delete(user: User) {
-    this.usersCRUDComponent.users = this.usersCRUDComponent.users.filter(u => u !== user)
-    this.userService.deleteUser(user.id).subscribe()
+    swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary user!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(user.id).subscribe()
+        this.globalService.updateComponent({refresh: true});
+      }
+    })
   }
 
   save(user: User) {
