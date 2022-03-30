@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import swal from 'sweetalert2';
-import {Hero} from '../../hero';
-import {HeroService} from '../../hero.service';
+import {Hero} from '../../interfaces/hero';
+import {HeroService} from '../../services/hero.service';
 import {MatDialog} from "@angular/material/dialog";
 import {HerroAddDialogComponent} from "./herro-add-dialog/herro-add-dialog.component";
-import {GlobalService} from "../../global.service";
+import {GlobalService} from "../../services/global.service";
 
 
 @Component({

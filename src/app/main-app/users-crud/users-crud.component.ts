@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../user.service";
-import {User} from "../../user";
-import {MessageService} from "../../message.service";
+import {UserService} from "../../services/user.service";
+import {User} from "../../interfaces/user";
+import {MessageService} from "../../services/message.service";
 import {UserAddDialogComponent} from "./user-add-dialog/user-add-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {GlobalService} from "../../global.service";
+import {GlobalService} from "../../services/global.service";
 
 @Component({
   selector: 'app-users-crud',

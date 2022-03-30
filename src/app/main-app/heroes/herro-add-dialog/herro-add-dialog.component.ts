@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HeroService} from "../../../hero.service";
-import {Hero} from "../../../hero";
-import {GlobalService} from "../../../global.service";
+import {HeroService} from "../../../services/hero.service";
+import {Hero} from "../../../interfaces/hero";
+import {GlobalService} from "../../../services/global.service";
 
 @Component({
   selector: 'app-herro-add-dialog',

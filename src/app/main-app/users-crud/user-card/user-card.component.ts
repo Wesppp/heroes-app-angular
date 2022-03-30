@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from "../../../user";
-import {UserService} from "../../../user.service";
-import {GlobalService} from "../../../global.service";
+import {User} from "../../../interfaces/user";
+import {UserService} from "../../../services/user.service";
+import {GlobalService} from "../../../services/global.service";
 import swal from "sweetalert2";
 
 @Component({

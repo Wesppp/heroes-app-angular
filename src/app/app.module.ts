@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from './fake-bd/in-memory-data.service';
 import { CommonModule } from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
@@ -12,7 +12,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './main-app/heroes/heroes.component';
 import { HeroDetailComponent } from './main-app/hero-detail/hero-detail.component';
-import { HeroService } from "./hero.service";
+import { HeroService } from "./services/hero.service";
 import { MessagesComponent } from './main-app/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './main-app/dashboard/dashboard.component';

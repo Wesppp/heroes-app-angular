@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from "./user";
+import {User} from "../interfaces/user";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, Observable, of, tap} from 'rxjs';
 
@@ -53,17 +53,6 @@ export class UserService {
     return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateUser'))
     )
-  }
-
-  makeCaptcha() {
-    let result = '';
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let charactersLength = characters.length;
-    for (let i = 0; i < 5; i++) {
-      result += characters.charAt(Math.floor(Math.random() *
-        charactersLength));
-    }
-    return result;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

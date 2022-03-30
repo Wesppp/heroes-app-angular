@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../user.service";
+import {UserService} from "../../services/user.service";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
+import {GlobalService} from "../../services/global.service";
 
 @Component({
   selector: 'app-captcha',
@@ -11,11 +12,12 @@ import {Router} from "@angular/router";
 export class CaptchaComponent implements OnInit {
   captcha: string = ''
   isCorrect: boolean = true
-  randomSymbols: string = this.userService.makeCaptcha()
+  randomSymbols: string = this.globalService.makeCaptcha()
 
   constructor(private userService: UserService,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class CaptchaComponent implements OnInit {
       this.router.navigate(['/dashboard'])
     } else {
       this.isCorrect = false
-      this.randomSymbols = this.userService.makeCaptcha()
+      this.randomSymbols = this.globalService.makeCaptcha()
     }
   }
 }
