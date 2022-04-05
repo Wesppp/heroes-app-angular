@@ -1,17 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HeroesComponent} from './main-app/heroes/heroes.component';
-import {DashboardComponent} from "./main-app/dashboard/dashboard.component";
-import {HeroDetailComponent} from './main-app/hero-detail/hero-detail.component';
-import {LoginFormComponent} from "./auth/login-form/login-form.component";
-import {RegistrationComponent} from "./auth/registration/registration.component";
+import {HeroesComponent} from './pages/main-app/heroes/heroes.component';
+import {DashboardComponent} from "./pages/main-app/dashboard/dashboard.component";
+import {HeroDetailComponent} from './pages/main-app/hero-detail/hero-detail.component';
+import {LoginFormComponent} from "./pages/auth/login-form/login-form.component";
+import {RegistrationComponent} from "./pages/auth/registration/registration.component";
 import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component";
 import {AppLayoutComponent} from "./shared/layouts/app-layout/app-layout.component";
-import {RestorePasswordComponent} from "./auth/restore-password/restore-password.component";
-import {AuthGuard} from "./auth/auth.guard";
-import {UsersCRUDComponent} from "./main-app/users-crud/users-crud.component";
-import {CaptchaComponent} from "./auth/captcha/captcha.component";
-import {MessagesComponent} from "./main-app/messages/messages.component";
+import {RestorePasswordComponent} from "./pages/auth/restore-password/restore-password.component";
+import {AuthGuard} from "./pages/auth/auth.guard";
+import {UsersCRUDComponent} from "./pages/main-app/users-crud/users-crud.component";
+import {CaptchaComponent} from "./pages/auth/captcha/captcha.component";
+import {MessagesComponent} from "./pages/main-app/messages/messages.component";
 
 const routes: Routes = [
   {

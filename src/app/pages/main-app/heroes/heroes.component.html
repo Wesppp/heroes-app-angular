@@ -1,0 +1,25 @@
+<h1>Tour of Heroes</h1>
+<h2>Your heroes</h2>
+<div>
+  <label for="new-hero">Hero search: </label>
+  <input [(ngModel)]="search" type="text" id="new-hero" placeholder="Bombasto"/>
+
+  <button type="button" (click)="openDialog()" class="add-button"
+          mat-stroked-button aria-label="Show an example snack-bar">
+    Add hero
+  </button>
+</div>
+
+<app-progress-spinner *ngIf="isProgessBarVisible">
+</app-progress-spinner>
+
+<ul class="heroes" *ngIf="!isProgessBarVisible">
+  <li *ngFor="let hero of heroes | filter:search">
+    <a routerLink="/detail/{{ hero.id }}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button type="button" class="delete" title="delete hero"
+            (click)="delete(hero)">x
+    </button>
+  </li>
+</ul>
