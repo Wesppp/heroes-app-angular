@@ -33,11 +33,13 @@ import { UsersCRUDComponent } from './pages/main-app/users-crud/users-crud.compo
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {UserCardComponent} from "./pages/main-app/users-crud/user-card/user-card.component";
-import { FilterPipe } from './pipes/filter.pipe';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 import { CaptchaComponent } from './pages/auth/captcha/captcha.component';
 import { HerroAddDialogComponent } from './pages/main-app/heroes/herro-add-dialog/herro-add-dialog.component';
 import { UserAddDialogComponent } from './pages/main-app/users-crud/user-add-dialog/user-add-dialog.component';
 import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
+import { CustomInputComponent } from './components/custom-input/custom-input.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -59,6 +61,7 @@ import { ProgressSpinnerComponent } from './components/progress-spinner/progress
         HerroAddDialogComponent,
         UserAddDialogComponent,
         ProgressSpinnerComponent,
+        CustomInputComponent
     ],
   imports: [
     BrowserModule,
@@ -79,9 +82,10 @@ import { ProgressSpinnerComponent } from './components/progress-spinner/progress
     MatDialogModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    ReactiveFormsModule
   ],
-  providers: [HeroService, AuthGuard, HeroesComponent],
+  providers: [HeroService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

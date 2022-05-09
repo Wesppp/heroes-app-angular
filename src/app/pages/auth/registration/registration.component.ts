@@ -3,6 +3,7 @@ import { User } from "../../../shared/interfaces/user";
 import { UserService } from "../../../shared/services/user.service";
 import {Router} from "@angular/router";
 import {GlobalService} from "../../../shared/services/global.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-registration',
@@ -15,6 +16,7 @@ export class RegistrationComponent implements OnInit {
   repeatPassword: string = ''
   isRepeatUser: boolean = false
   users: User[] = [];
+  registrationForm!: FormGroup
 
   constructor(private userService: UserService,
               private router: Router,
@@ -23,6 +25,21 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers()
       .subscribe(users => this.users = users)
+
+    this.registrationForm = new FormGroup({
+      nickname: new FormControl(this.user.name, [
+        Validators.required,
+        Validators.pattern('[A-Za-zА-Яа-яЁё0-9]{1,15}')
+      ]),
+      password1: new FormControl(this.user.password, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      password2: new FormControl(this.repeatPassword, [
+        Validators.required,
+        Validators.minLength(4)
+      ])
+    })
   }
 
   register(name: string, password: string) {

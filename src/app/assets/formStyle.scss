@@ -22,6 +22,9 @@
     button {
       margin-right: 10px;
     }
+    small {
+      font-family: 'Roboto', sans-serif;
+    }
   }
 
   h2 {
@@ -49,6 +52,12 @@
     font-size: 0.8rem;
     text-decoration: none;
     color: #3a3aa1;
+  }
+
+  .btns {
+    small {
+      color: #bb4141;
+    }
   }
 }
 

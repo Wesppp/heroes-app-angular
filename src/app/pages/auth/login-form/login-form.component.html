@@ -6,52 +6,49 @@
   <p>log in if you are registered</p>
   <h2>Login</h2>
 
-  <form (ngSubmit)="login(loginNickname.value, loginPassword.value)" #userForm="ngForm">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.get('nickname')?.value,
+         loginForm.get('password')?.value); loginForm.reset()">
     <div class="name">
       <h4>Username</h4>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your nickname</mat-label>
-        <input [(ngModel)]="user.name"
-               maxlength="15"
-               #loginNickname="ngModel"
-               matInput placeholder="sveklo" required
-               name="login-nickname"
-               pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}"
-               >
-      </mat-form-field>
-
-      <div class="alert danger-alert" *ngIf="loginNickname.dirty && loginNickname.invalid">
-        Use only letters and numbers
+      <app-custom-input [options]="{name: 'reg-nickname',
+                                      placeholder: 'Misha',
+                                      type: 'text',
+                                      maxlength: 15,
+                                      label: 'Enter your nickname',
+                                      pattern: '[A-Za-zА-Яа-яЁё0-9]{1,15}'}"
+                        [value]="user.name"
+                        formControlName="nickname"></app-custom-input>
+      <div class="alert danger-alert"
+           *ngIf="loginForm.get('nickname')?.invalid && loginForm.get('nickname')?.touched">
+        <small *ngIf="loginForm.get('nickname')?.errors?.['required']">The field cannot be empty</small>
+        <small *ngIf="loginForm.get('nickname')?.errors?.['pattern']">Use only letters and numbers</small>
       </div>
     </div>
 
     <div class="password">
       <h4>Password</h4>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input [(ngModel)]="user.password"
-               maxlength="15" #loginPassword="ngModel"
-               required name="login-password"
-               matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-      </mat-form-field>
-
-      <div class="alert danger-alert" *ngIf="loginPassword.dirty && loginPassword.value.length < 4">
-        The minimum password length is 4
+      <app-custom-input [options]="{name: 'reg-password',
+                                      placeholder: '1234',
+                                      type: 'password',
+                                      maxlength: 15,
+                                      label: 'Enter your password',
+                                      pattern: ''}"
+                        [value]="user.password"
+                        formControlName="password"></app-custom-input>
+      <div class="alert danger-alert"
+           *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">The field cannot be empty</small>
+        <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Minlength 4</small>
       </div>
     </div>
 
     <div class="btns">
-      <button type="submit" [disabled]="!userForm.form.valid || loginPassword.value.length < 4" mat-raised-button
+      <button type="submit" [disabled]="loginForm.invalid" mat-raised-button
               color="primary">Login
       </button>
       <a routerLink="/restore-password">Forgot password?</a>
     </div>
   </form>
-
 </div>
 
 

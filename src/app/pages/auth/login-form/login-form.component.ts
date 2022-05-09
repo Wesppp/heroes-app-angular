@@ -4,6 +4,7 @@ import {UserService} from "../../../shared/services/user.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../auth.service";
 import {GlobalService} from "../../../shared/services/global.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login-form',
@@ -14,6 +15,7 @@ export class LoginFormComponent implements OnInit {
   hide: boolean = true;
   user: User = {id: 0, name: '', password: '', role: 'user'}
   isExistUser: boolean = false
+  loginForm!: FormGroup
 
   constructor(private userService: UserService,
               private router: Router,
@@ -22,7 +24,16 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.loginForm = new FormGroup({
+      nickname: new FormControl(this.user.name, [
+        Validators.required,
+        Validators.pattern('[A-Za-zА-Яа-яЁё0-9]{1,15}')
+      ]),
+      password: new FormControl(this.user.password, [
+        Validators.required,
+        Validators.minLength(4)
+      ])
+    })
   }
 
   login(name: string, password: string) {

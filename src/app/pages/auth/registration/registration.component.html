@@ -5,68 +5,67 @@
 <div class="container">
   <p>fill in the registration fields</p>
   <h2>Registration</h2>
-
-  <form #userForm="ngForm">
+  <form [formGroup]="registrationForm"
+        (ngSubmit)="register(registrationForm.get('nickname')?.value,
+         registrationForm.get('password1')?.value); registrationForm.reset()">
     <div class="name">
       <h4>Username</h4>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your nickname</mat-label>
-        <input [(ngModel)]="user.name"
-               maxlength="15"
-               #regNickname="ngModel"
-               matInput placeholder="sveklo" required
-               name="reg-nickname"
-               pattern="[A-Za-zА-Яа-яЁё0-9]{1,15}"
-        >
-      </mat-form-field>
-      <div class="alert danger-alert" *ngIf="regNickname.dirty && regNickname.invalid">
-        Use only letters and numbers
+      <app-custom-input [options]="{name: 'reg-nickname',
+                                      placeholder: 'Misha',
+                                      type: 'text',
+                                      maxlength: 15,
+                                      label: 'Enter your nickname',
+                                      pattern: '[A-Za-zА-Яа-яЁё0-9]{1,15}'}"
+                        [value]="user.name"
+                        formControlName="nickname"></app-custom-input>
+      <div class="alert danger-alert"
+           *ngIf="registrationForm.get('nickname')?.invalid && registrationForm.get('nickname')?.touched">
+        <small *ngIf="registrationForm.get('nickname')?.errors?.['required']">The field cannot be empty</small>
+        <small *ngIf="registrationForm.get('nickname')?.errors?.['pattern']">Use only letters and numbers</small>
       </div>
     </div>
 
     <div class="password">
       <h4>Password</h4>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input [(ngModel)]="user.password"
-               maxlength="15" #regPassword1="ngModel"
-               required name="reg-password1"
-               matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-      </mat-form-field>
-
-      <div class="alert danger-alert" *ngIf="regPassword1.dirty && regPassword1.value.length < 4">
-        The minimum password length is 4
+      <app-custom-input [options]="{name: 'reg-password1',
+                                      placeholder: '1234',
+                                      type: 'password',
+                                      maxlength: 15,
+                                      label: 'Enter your password',
+                                      pattern: ''}"
+                        [value]="user.password"
+                        formControlName="password1"></app-custom-input>
+      <div class="alert danger-alert"
+           *ngIf="registrationForm.get('password1')?.invalid && registrationForm.get('password1')?.touched">
+        <small *ngIf="registrationForm.get('password1')?.errors?.['required']">The field cannot be empty</small>
+        <small *ngIf="registrationForm.get('password1')?.errors?.['minlength']">Minlength 4</small>
       </div>
     </div>
 
     <div class="password">
       <h4>Repeat the password</h4>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password one more time</mat-label>
-        <input [(ngModel)]="repeatPassword"
-               maxlength="15" #regPassword2="ngModel"
-               required name="reg-password2"
-               matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-      </mat-form-field>
-
-      <div class="alert danger-alert" *ngIf="regPassword2.dirty && regPassword2.value.length < 4">
-        The minimum password length is 4
+      <app-custom-input [options]="{name: 'reg-password2',
+                                      placeholder: '1234',
+                                      type: 'password',
+                                      maxlength: 15,
+                                      label: 'Enter your password one more time',
+                                      pattern: ''}"
+                        [value]="repeatPassword"
+                        formControlName="password2"></app-custom-input>
+      <div class="alert danger-alert"
+           *ngIf="registrationForm.get('password2')?.invalid && registrationForm.get('password2')?.touched">
+        <small *ngIf="registrationForm.get('password2')?.errors?.['required']">The field cannot be empty</small>
+        <small *ngIf="registrationForm.get('password2')?.errors?.['minlength']">Minlength 4</small>
       </div>
     </div>
 
     <div class="btns">
-      <button type="submit" (click)="register(regNickname.value, regPassword1.value); userForm.reset()" [disabled]="!userForm.form.valid || regPassword1.value.length < 4
-              || regPassword1.value !== regPassword2.value"
+      <button type="submit" [disabled]="registrationForm.invalid ||
+                                        registrationForm.get('password2')?.value !== registrationForm.get('password1')?.value"
               mat-raised-button color="primary">Registration
       </button>
+      <small *ngIf="registrationForm.get('password2')?.value !== registrationForm.get('password1')?.value">
+        Passwords don't match</small>
     </div>
   </form>
 </div>
